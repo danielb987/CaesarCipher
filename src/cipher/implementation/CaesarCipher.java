@@ -19,9 +19,13 @@ import cipher.Cipher;
 public class CaesarCipher implements Cipher {
     
     static {
+        String folder;
+        
+        folder = "C/Windows/CaesarCrypt_Windows/Debug/";
+        
         // Load native library caesar.dll (Windows) or libcaesar.so (Unixes) at runtime
         // This library contains a native method called sayHello()
-        System.loadLibrary("caesar");
+        System.loadLibrary(folder+"CaesarCrypt_Windows");
     }
     
     public native void setNumShifts(int num);
