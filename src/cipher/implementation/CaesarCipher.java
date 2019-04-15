@@ -17,17 +17,19 @@ import cipher.Cipher;
  * @author Daniel Bergqvist
  */
 public class CaesarCipher implements Cipher {
-
+    
     static {
         // Load native library caesar.dll (Windows) or libcaesar.so (Unixes) at runtime
         // This library contains a native method called sayHello()
         System.loadLibrary("caesar");
     }
-
+    
+    public native void setNumShifts(int num);
+    
     @Override
     public native String encrypt(String message);
-
+    
     @Override
     public native String decrypt(String message);
-
+    
 }

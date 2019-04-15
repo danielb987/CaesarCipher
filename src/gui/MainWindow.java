@@ -1,6 +1,5 @@
 package gui;
 
-import cipher.Cipher;
 import cipher.implementation.CaesarCipher;
 
 /**
@@ -10,15 +9,17 @@ import cipher.implementation.CaesarCipher;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    private final Cipher cipher;
+    private final CaesarCipher cipher;
     
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
-        cipher = new CaesarCipher();
-        
         initComponents();
+        
+        cipher = new CaesarCipher();
+        String numSteps = jFormattedTextField_NumStepsToShift.getText();
+        cipher.setNumShifts(Integer.parseInt(numSteps));
     }
 
     /**
@@ -43,6 +44,10 @@ public class MainWindow extends javax.swing.JFrame {
         jTextField_DecryptedResult = new javax.swing.JTextField();
         jButton_Decrypt = new javax.swing.JButton();
         jButton_Exit = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton_Configuration_SetValue = new javax.swing.JButton();
+        jFormattedTextField_NumStepsToShift = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CaesarCipher");
@@ -154,6 +159,46 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuration"));
+
+        jLabel5.setText("Num steps to shift");
+
+        jButton_Configuration_SetValue.setText("Set value");
+        jButton_Configuration_SetValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Configuration_SetValueActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField_NumStepsToShift.setColumns(3);
+        jFormattedTextField_NumStepsToShift.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextField_NumStepsToShift.setText("2");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Configuration_SetValue)
+                    .addComponent(jFormattedTextField_NumStepsToShift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jFormattedTextField_NumStepsToShift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Configuration_SetValue)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,19 +208,22 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_Exit))
+                    .addComponent(jButton_Exit)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_Exit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -193,17 +241,26 @@ public class MainWindow extends javax.swing.JFrame {
         jTextField_DecryptedResult.setText(cipher.encrypt(jTextField_TextToDecrypt.getText()));
     }//GEN-LAST:event_jButton_DecryptActionPerformed
 
+    private void jButton_Configuration_SetValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Configuration_SetValueActionPerformed
+        String numSteps = jFormattedTextField_NumStepsToShift.getText();
+        cipher.setNumShifts(Integer.parseInt(numSteps));
+    }//GEN-LAST:event_jButton_Configuration_SetValueActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Configuration_SetValue;
     private javax.swing.JButton jButton_Decrypt;
     private javax.swing.JButton jButton_Encrypt;
     private javax.swing.JButton jButton_Exit;
+    private javax.swing.JFormattedTextField jFormattedTextField_NumStepsToShift;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField_DecryptedResult;
     private javax.swing.JTextField jTextField_EncryptedResult;
     private javax.swing.JTextField jTextField_TextToDecrypt;
