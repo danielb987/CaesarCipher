@@ -29,6 +29,9 @@ nbproject/private/private.xml
 
 
 
+*.o
+*.so
+*.so.1.1.0
 
 
 

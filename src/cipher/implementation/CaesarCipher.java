@@ -19,17 +19,20 @@ import cipher.Cipher;
 public class CaesarCipher implements Cipher {
     
     static {
-        String folder;
+        String lib;
         
         if (System.getProperty("os.name").startsWith("Windows")) {
-            folder = "C/Windows/CaesarCrypt_Windows/x64/Debug/";
+            lib = "C/Windows/CaesarCrypt_Windows/x64/Debug/CaesarCrypt_Windows";
+            System.loadLibrary(lib);
         } else {
-            folder = "C/Linux/";
+            lib = "/C/Linux/CaesarCrypt_Linux/libcaesarcrypt.so";
+            System.load(System.getProperty("user.dir") + lib);
         }
         
         // Load native library caesar.dll (Windows) or libcaesar.so (Unixes) at runtime
         // This library contains a native method called sayHello()
-        System.loadLibrary(folder+"CaesarCrypt_Windows");
+//        System.load(System.getProperty("user.dir") + lib);
+//        System.loadLibrary(lib);
     }
     
     public native void setNumShifts(int num);
