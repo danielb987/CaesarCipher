@@ -238,7 +238,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_ExitActionPerformed
 
     private void jButton_DecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DecryptActionPerformed
-        jTextField_DecryptedResult.setText(cipher.encrypt(jTextField_TextToDecrypt.getText()));
+        jTextField_DecryptedResult.setText(cipher.decrypt(jTextField_TextToDecrypt.getText()));
     }//GEN-LAST:event_jButton_DecryptActionPerformed
 
     private void jButton_Configuration_SetValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Configuration_SetValueActionPerformed

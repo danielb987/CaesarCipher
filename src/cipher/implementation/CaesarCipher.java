@@ -21,7 +21,7 @@ public class CaesarCipher implements Cipher {
     static {
         String folder;
         
-        folder = "C/Windows/CaesarCrypt_Windows/Debug/";
+        folder = "C/Windows/CaesarCrypt_Windows/x64/Debug/";
         
         // Load native library caesar.dll (Windows) or libcaesar.so (Unixes) at runtime
         // This library contains a native method called sayHello()
