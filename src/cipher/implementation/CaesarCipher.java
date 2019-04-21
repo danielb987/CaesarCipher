@@ -21,8 +21,12 @@ public class CaesarCipher implements Cipher {
     static {
         String lib;
         
+        System.out.format("java.library.path: %s%n", System.getProperty("java.library.path"));
         if (System.getProperty("os.name").startsWith("Windows")) {
-            lib = "C/Windows/CaesarCrypt_Windows/x64/Debug/CaesarCrypt_Windows";
+//            lib = "/C/Windows/CaesarCrypt_Windows/x64/Debug/CaesarCrypt_Windows";
+//            System.load(System.getProperty("user.dir") + lib + ".dll");
+            lib = "C/Windows/CaxxesarCrypt_Windows/x64/Debug/CaxxesarCrypt_Windows";
+            lib = "CaesarCrypt_Windows";
             System.loadLibrary(lib);
         } else {
             lib = "/C/Linux/CaesarCrypt_Linux/libcaesarcrypt.so";
